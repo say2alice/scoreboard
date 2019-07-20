@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 const Header = ({title, totalPlayers}) => {
 // 객체 해체할당
