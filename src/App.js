@@ -59,11 +59,11 @@ class App extends React.Component {
   // short hand property 키와 값이 같을 때 생량 name :name
   handleAddPlayer = (name) => {
     console.log(name);
-    this.setState(prevStat => {
+    this.setState(p => {
       const player = {name, score:0, id: ++this.macId};
-      prevStat.players.push(player);
+      p.players.push(player);
       return {
-        players: prevStat.players
+        players: p.players
       }
     })
   }
