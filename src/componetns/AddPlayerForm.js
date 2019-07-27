@@ -1,13 +1,13 @@
 import React from 'react';
 
 export class AddPlayerForm extends React.Component {
-	state = {
-		value: ''
-	}
-
-	handleValueChange = (e) => {
-		this.setState({value: e.target.value});
-	}
+	// state = {
+	// 	value: ''
+	// }
+	//
+	// handleValueChange = (e) => {
+	// 	this.setState({value: e.target.value});
+	// }
 
 	handleSumit = (e) => {
 		// 기본 이벤트 막기
@@ -22,14 +22,18 @@ export class AddPlayerForm extends React.Component {
 			return
 		}
 
-		this.props.addPlayer(this.state.value);
+		// this.props.addPlayer(this.state.value);
+		this.props.addPlayer(this.textInput.current.value);
 	}
+
+	textInput = React.createRef();
 
 	render() {
 		return (
 			<form className="form" onSubmit={this.handleSumit} noValidate id="playerForm">
 				<input className="input" type="text" placeholder="enter a player's name"
-							 value={this.state.value} onChange={this.handleValueChange} required id="player"/>
+							 ref={this.textInput} required id="player"/>
+							 {/*value={this.state.value} onChange={this.handleValueChange} required id="player"/>*/}
 				<input className="input" type="submit" value="Add Player" />
 			</form>
 		)
