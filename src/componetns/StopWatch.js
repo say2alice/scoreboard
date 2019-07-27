@@ -14,8 +14,8 @@ export class StopWatch extends React.Component {
 			<div className="stopwatch">
 				<h2>StopWatch</h2>
 				<span className="stopwatch-time">{this.state.timer}</span>
-				<button>{this.state.isRunning?'stop':'start'}</button>
-				<button>Reset</button>
+				<button onClick={this.handleStopWatch}>{this.state.isRunning?'stop':'start'}</button>
+				<button onClick={this.handleReset}>Reset</button>
 			</div>
 		);
 	}
@@ -27,8 +27,15 @@ export class StopWatch extends React.Component {
 					timer: prevStat.timer + 1
 				}))
 		}
-	};
+	}
 
+	handleStopWatch = () => {
+		this.setState(ps => ({isRunning: !ps.isRunning}));
+	}
+
+	handleReset = () => {
+		this.setState({timer: 0});
+	}
 
 	// DOM이 랜더링 된 후 호출
 	// 네트워크 호출, jquery 로딩
