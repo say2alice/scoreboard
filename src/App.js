@@ -15,6 +15,8 @@ class App extends React.Component {
     ]
   }
 
+  macId = 4;
+
   render() {
     return (
       <div className="scoreboard">
@@ -25,7 +27,7 @@ class App extends React.Component {
                     removePlayer={this.handleRemovePlayer}
                     changeScore={this.handleChangeScore}/>)
         }
-        <AddPlayerForm/>
+        <AddPlayerForm addPlayer={this.handleAddPlayer}/>
       </div>
     );
   }
@@ -49,6 +51,19 @@ class App extends React.Component {
 
       return {
         players: [...prevState.players]
+      }
+    })
+  }
+
+  // 3주차 비동기 처리
+  // short hand property 키와 값이 같을 때 생량 name :name
+  handleAddPlayer = (name) => {
+    console.log(name);
+    this.setState(prevStat => {
+      const player = {name, score:0, id: ++this.macId};
+      prevStat.players.push(player);
+      return {
+        players: prevStat.players
       }
     })
   }
