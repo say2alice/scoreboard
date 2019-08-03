@@ -1,12 +1,15 @@
 import React from 'react';
 import Counter from "./Counter";
+import {removePlayer} from "../redux/actions";
+import {connect} from "react-redux";
 
 export class Player extends React.Component {
 	render() {
 		const {name, score, removePlayer, id, changeScore} = this.props;
-		console.log(name, ' rendered');
 
-		return (
+		console.log(name, 'rendered');
+
+		return	(
 			<div className="player">
 			<span className="player-name">
 				<button className="remove-player" onClick={() => removePlayer(id)}>x</button>
@@ -17,13 +20,20 @@ export class Player extends React.Component {
 		);
 	}
 
-	// 속성값 변경 확인
 	componentWillReceiveProps(nextProps, nextContext) {
-		// console.log("cwr nextPropts :" ,nextProps)
+		// console.log('componentWillReceiveProps: ', nextProps);
 	}
 
 	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		// console.log("scu nextPropts :" ,nextProps)
-		return this.props.score !== nextProps.score;
+		// console.log('shouldComponentUpdate: ', nextProps);
+		return this.props.score !== nextProps.score ? true : false;
 	}
 }
+
+const mapActionToProps = (dispatch) => ({
+	// 왼쪽은 props, 오른쪽은 펑션(액션을 디스패치하는)
+	removePlayer: (id) => dispatch(removePlayer(id))
+})
+
+// 커링 펑션, HoC
+export default connect(null, mapActionToProps)(Player);
