@@ -11,14 +11,14 @@ export class Counter extends React.Component {
 	// 이벤트 우측에는 함수 선언문이 와야 된다.
 
 	// arrow function안에 쓰이는 this는 lexical this
-	/*	changeScore = (delta) => {
-			console.log('incrementScore: ', this);
-			// this.state.score += 1;
-			// this.setState({score: this.state.score + delta});
-			this.setState(prevState => ({score: prevState.score + delta}));
-		}*/
+/*	changeScore = (delta) => {
+		console.log('incrementScore: ', this);
+		// this.state.score += 1;
+		// this.setState({score: this.state.score + delta});
+		this.setState(prevState => ({score: prevState.score + delta}));
+	}*/
 
-	static propTypes = {
+	 static propTypes = {
 		id: PropTypes.number,
 		score: PropTypes.number,
 		changeScore: PropTypes.func

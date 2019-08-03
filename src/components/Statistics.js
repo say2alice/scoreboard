@@ -1,13 +1,13 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 export const Statistics = (props) => {
 	const totalPlayers = props.players.length;
 	let totalScore = 0;
-
-	props.players.forEach(
-		player => {
-			 totalScore = player.score + totalScore;
-		});
+	// 계산 로직: forEach 이용
+	props.players.forEach(player => {
+		totalScore += player.score;
+	})
 
 	return (
 		<table className="stats">
@@ -24,3 +24,11 @@ export const Statistics = (props) => {
 		</table>
 	);
 }
+
+
+const mapStateToProps = (state) => ({
+	// 왼쪽은 props, 오른쪽은 state
+	players: state.playerReducer.players
+})
+
+export default connect(mapStateToProps, null)(Statistics);
