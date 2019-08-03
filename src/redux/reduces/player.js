@@ -1,37 +1,35 @@
-import {ADD_PLAYER} from "../actionTypes";
+import {ADD_PLAYER, CHANGE_SCORE} from "../actionTypes";
 
-const playersInitialState = {
+const playerInitialState = {
 	players: [
-		{id: 1, name: 'HONG', score: 40},
-		{id: 2, name: 'KIM', score: 50},
-		{id: 3, name: 'LDK', score: 30},
-		{id: 4, name: 'PARK', score: 60},
+		{name: 'LDK', score: 30, id: 1},
+		{name: 'HONG', score: 40, id: 2},
+		{name: 'KIM', score: 50, id: 3},
+		{name: 'PARK', score: 60, id: 4},
 	]
 }
 
-let maxID = 4;
+let maxId = 4; // 편의상
 
-// console.log(name);
-// this.setState(p => {
-// 	const player = {name, score:0, id: ++this.macId};
-// 	p.players.push(player);
-// 	return {
-// 		players: p.players
-// 	}
-// })
-
-// es6 기본값 설정 추가됩
-export const playerRecuder = (state = playersInitialState, action) => {
+export const playerReducer = (state = playerInitialState, action) => {
+	let players;
 	switch (action.type) {
-		case ADD_PLAYER :
-			const players = [...state.players];
-			const player = {name: action.name, score: 0, id: ++maxID};
-			players.push(player)
-			// const players = state.players.push(player);
-			// return {...state, players:player}
+		case ADD_PLAYER:
+			players = [...state.players]; // 기존 players를 deep copy
+			const player = {name: action.name, score: 0, id: ++maxId}; // short hand property
+			players.push(player);
 			return {...state, players}
-			break;
-		default :
+
+		case CHANGE_SCORE:
+			players = [...state.players];
+			players.forEach(player => {
+				if (player.id === action.id) {
+					player.score += action.delta;
+				}
+			})
+			return {...state, players}
+
+		default:
 			return state;
 	}
 }
