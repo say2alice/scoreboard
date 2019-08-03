@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./componetns/Header";
 import {Player} from "./componetns/Player";
-import {AddPlayerForm} from "./componetns/AddPlayerForm";
+import AddPlayerForm from "./componetns/AddPlayerForm";
 import connect from "react-redux/es/connect/connect";
 
 class App extends React.Component {
@@ -29,7 +29,8 @@ class App extends React.Component {
                     removePlayer={this.handleRemovePlayer}
                     changeScore={this.handleChangeScore}/>)
         }
-        <AddPlayerForm addPlayer={this.handleAddPlayer}/>
+        {/*<AddPlayerForm addPlayer={this.handleAddPlayer}/>*/}
+        <AddPlayerForm />
       </div>
     );
   }
@@ -59,16 +60,16 @@ class App extends React.Component {
 
   // 3주차 비동기 처리
   // short hand property 키와 값이 같을 때 생량 name :name
-  handleAddPlayer = (name) => {
-    console.log(name);
-    this.setState(p => {
-      const player = {name, score:0, id: ++this.macId};
-      p.players.push(player);
-      return {
-        players: p.players
-      }
-    })
-  }
+  // handleAddPlayer = (name) => {
+  //   console.log(name);
+  //   this.setState(p => {
+  //     const player = {name, score:0, id: ++this.macId};
+  //     p.players.push(player);
+  //     return {
+  //       players: p.players
+  //     }
+  //   })
+  // }
 }
 
 // store에 props에 연결. subscribe

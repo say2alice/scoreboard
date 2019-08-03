@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {addPlayer} from "../redux/reduces/actions";
 
 export class AddPlayerForm extends React.Component {
 	// state = {
@@ -39,3 +41,15 @@ export class AddPlayerForm extends React.Component {
 		)
 	}
 }
+
+// publish
+// props : function
+// actionCreater은 리턴 action
+const mapActionToProps = (dispatch) => ({
+	addPlayer: (name) => dispatch(addPlayer(name))
+})
+
+// 커링펑션, HoC
+// 컴포지션 기법
+export default connect(null, mapActionToProps)(AddPlayerForm);
+// export default App;
